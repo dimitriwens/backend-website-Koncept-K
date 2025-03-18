@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colors",
+  "info": {
+    "singularName": "color",
+    "pluralName": "colors",
+    "displayName": "Color"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "color_name": {
+      "type": "string",
+      "required": true
+    },
+    "color_visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brands",
+  "info": {
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "Brand"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "brand_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "brand_visible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "brand_description": {
+      "type": "text",
+      "required": false
+    },
+    "brand_image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "brand_slug": {
+      "type": "uid",
+      "targetField": "brand_name"
+    }
+  }
+}

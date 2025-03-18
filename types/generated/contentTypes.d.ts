@@ -362,9 +362,47 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandBrand extends Schema.CollectionType {
+  collectionName: 'brands';
+  info: {
+    displayName: 'Brand';
+    pluralName: 'brands';
+    singularName: 'brand';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brand_description: Attribute.Text;
+    brand_image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    brand_name: Attribute.String & Attribute.Required & Attribute.Unique;
+    brand_slug: Attribute.UID<'api::brand.brand', 'brand_name'>;
+    brand_visible: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
+    description: '';
     displayName: 'Category';
     pluralName: 'categories';
     singularName: 'category';
@@ -374,10 +412,10 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
   attributes: {
     category_description: Attribute.Text & Attribute.Required;
-    category_id: Attribute.UID;
     category_image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Attribute.Required;
     category_name: Attribute.String & Attribute.Required & Attribute.Unique;
+    category_slug: Attribute.UID<'api::category.category', 'category_name'>;
     category_visible: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -393,6 +431,185 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiColorColor extends Schema.CollectionType {
+  collectionName: 'colors';
+  info: {
+    displayName: 'Color';
+    pluralName: 'colors';
+    singularName: 'color';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    color_name: Attribute.String & Attribute.Required;
+    color_visible: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaterialMaterial extends Schema.CollectionType {
+  collectionName: 'materials';
+  info: {
+    displayName: 'Material';
+    pluralName: 'materials';
+    singularName: 'material';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    material_type: Attribute.String & Attribute.Required;
+    material_visible: Attribute.Boolean & Attribute.DefaultTo<true>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    description: '';
+    displayName: 'Product';
+    pluralName: 'products';
+    singularName: 'product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    product_brand: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::brand.brand'
+    >;
+    product_category: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::category.category'
+    >;
+    product_color: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::color.color'
+    >;
+    product_description: Attribute.Text;
+    product_image: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Attribute.Required;
+    product_material: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::material.material'
+    >;
+    product_name: Attribute.String & Attribute.Required;
+    product_price: Attribute.Decimal & Attribute.Required;
+    product_size: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::size.size'
+    >;
+    product_slug: Attribute.UID<'api::product.product', 'product_name'>;
+    product_type: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::type.type'
+    >;
+    product_visible: Attribute.Boolean & Attribute.DefaultTo<true>;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSizeSize extends Schema.CollectionType {
+  collectionName: 'sizes';
+  info: {
+    description: '';
+    displayName: 'Size';
+    pluralName: 'sizes';
+    singularName: 'size';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    size_name: Attribute.String & Attribute.Required;
+    size_visible: Attribute.Boolean & Attribute.DefaultTo<true>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTypeType extends Schema.CollectionType {
+  collectionName: 'types';
+  info: {
+    displayName: 'Type';
+    pluralName: 'types';
+    singularName: 'type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::type.type', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    type_type: Attribute.String & Attribute.Required;
+    type_visible: Attribute.Boolean & Attribute.DefaultTo<true>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::type.type', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -786,7 +1003,13 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
+      'api::color.color': ApiColorColor;
+      'api::material.material': ApiMaterialMaterial;
+      'api::product.product': ApiProductProduct;
+      'api::size.size': ApiSizeSize;
+      'api::type.type': ApiTypeType;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::upload.file': PluginUploadFile;

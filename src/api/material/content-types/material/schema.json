@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materials",
+  "info": {
+    "singularName": "material",
+    "pluralName": "materials",
+    "displayName": "Material"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "material_type": {
+      "type": "string",
+      "required": true
+    },
+    "material_visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "types",
+  "info": {
+    "singularName": "type",
+    "pluralName": "types",
+    "displayName": "Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "type_type": {
+      "type": "string",
+      "required": true
+    },
+    "type_visible": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    }
+  }
+}
