@@ -4,7 +4,8 @@
   "info": {
     "singularName": "brand",
     "pluralName": "brands",
-    "displayName": "Brand"
+    "displayName": "Brand",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,6 +25,10 @@
       "type": "text",
       "required": false
     },
+    "brand_slug": {
+      "type": "uid",
+      "targetField": "brand_name"
+    },
     "brand_image": {
       "allowedTypes": [
         "images",
@@ -34,10 +39,6 @@
       "type": "media",
       "multiple": false,
       "required": true
-    },
-    "brand_slug": {
-      "type": "uid",
-      "targetField": "brand_name"
     }
   }
 }
