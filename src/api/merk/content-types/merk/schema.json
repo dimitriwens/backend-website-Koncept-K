@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "merks",
+  "info": {
+    "singularName": "merk",
+    "pluralName": "merks",
+    "displayName": "Merk"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "merk_naam": {
+      "type": "string",
+      "required": true
+    },
+    "merk_foto": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -381,11 +381,12 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    brand_category: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
     brand_description: Schema.Attribute.Text;
-    brand_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    > &
-      Schema.Attribute.Required;
+    brand_image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     brand_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -493,6 +494,32 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
     material_type: Schema.Attribute.String & Schema.Attribute.Required;
     material_visible: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMerkMerk extends Struct.CollectionTypeSchema {
+  collectionName: 'merks';
+  info: {
+    displayName: 'Merk';
+    pluralName: 'merks';
+    singularName: 'merk';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::merk.merk'> &
+      Schema.Attribute.Private;
+    merk_foto: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    merk_naam: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1117,6 +1144,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::material.material': ApiMaterialMaterial;
+      'api::merk.merk': ApiMerkMerk;
       'api::product.product': ApiProductProduct;
       'api::size.size': ApiSizeSize;
       'api::type.type': ApiTypeType;

@@ -20,11 +20,13 @@
     "@strapi/provider-upload-cloudinary": "^5.11.2",
     "@strapi/strapi": "^5.11.2",
     "better-sqlite3": "11.3.0",
+    "next-cloudinary": "^6.16.0",
     "pg": "^8.14.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^5.1.0",
-    "styled-components": "^5.3.3"
+    "react-is": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
