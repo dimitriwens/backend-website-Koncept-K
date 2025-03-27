@@ -37,10 +37,6 @@
     "product_description": {
       "type": "text"
     },
-    "product_slug": {
-      "type": "uid",
-      "targetField": "product_name"
-    },
     "product_price": {
       "type": "decimal",
       "required": true
@@ -70,6 +66,15 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::type.type"
+    },
+    "product_feature": {
+      "type": "boolean",
+      "required": false
+    },
+    "product_slug": {
+      "type": "uid",
+      "targetField": "product_name",
+      "required": true
     }
   }
 }

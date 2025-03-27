@@ -389,7 +389,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     brand_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    brand_slug: Schema.Attribute.UID<'brand_name'>;
+    brand_slug: Schema.Attribute.UID<'brand_name'> & Schema.Attribute.Required;
     brand_visible: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
@@ -426,7 +426,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     category_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    category_slug: Schema.Attribute.UID<'category_name'>;
+    category_slug: Schema.Attribute.UID<'category_name'> &
+      Schema.Attribute.Required;
     category_visible: Schema.Attribute.Boolean;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -528,6 +529,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     product_color: Schema.Attribute.Relation<'oneToOne', 'api::color.color'>;
     product_description: Schema.Attribute.Text;
+    product_feature: Schema.Attribute.Boolean;
     product_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -540,7 +542,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     product_name: Schema.Attribute.String & Schema.Attribute.Required;
     product_price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     product_size: Schema.Attribute.Relation<'oneToMany', 'api::size.size'>;
-    product_slug: Schema.Attribute.UID<'product_name'>;
+    product_slug: Schema.Attribute.UID<'product_name'> &
+      Schema.Attribute.Required;
     product_type: Schema.Attribute.Relation<'oneToOne', 'api::type.type'>;
     product_visible: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<true>;

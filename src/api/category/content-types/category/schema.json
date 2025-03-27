@@ -36,7 +36,8 @@
     },
     "category_slug": {
       "type": "uid",
-      "targetField": "category_name"
+      "targetField": "category_name",
+      "required": true
     }
   }
 }
