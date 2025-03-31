@@ -529,6 +529,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     product_color: Schema.Attribute.Relation<'oneToOne', 'api::color.color'>;
     product_description: Schema.Attribute.Text;
+    product_description_general: Schema.Attribute.RichText;
     product_feature: Schema.Attribute.Boolean;
     product_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',

@@ -75,6 +75,9 @@
       "type": "uid",
       "targetField": "product_name",
       "required": true
+    },
+    "product_description_general": {
+      "type": "richtext"
     }
   }
 }
